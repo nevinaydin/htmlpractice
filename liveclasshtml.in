@@ -1,0 +1,466 @@
+What is CI/CD?
+CI and CD are two acronyms frequently used in modern development practices (Links to an external site.) and DevOps (Links to an external site.). CI stands for continuous integration (Links to an external site.), a fundamental DevOps best practice (Links to an external site.) where developers frequently merge code changes into a central repository where automated builds and tests run. But CD can either mean continuous delivery or continuous deployment. 
+
+What are the differences between CI, CD, and CD?
+Continuous integration
+Developers practicing continuous integration merge their changes back to the main branch as often as possible. The developer's changes are validated by creating a build and running automated tests against the build. By doing so, you avoid integration challenges that can happen when waiting for release day to merge changes into the release branch.
+
+Continuous integration puts a great emphasis on testing automation to check that the application is not broken whenever new commits are integrated into the main branch.
+
+The practice of merging all developers' working copies to shared mainline several times a day. It's the process of "Making". Everything related to the code fits here, and it all culminates in the ultimate goal of CI: a high-quality, deployable artifact! Some common CI-related phases might include:
+
+Compile
+Unit Test
+Static Analysis
+Dependency vulnerability testing
+Store artifact
+Continuous delivery
+Continuous delivery (Links to an external site.) is an extension of continuous integration since it automatically deploys all code changes to a testing and/or production environment after the build stage. 
+
+This means that on top of automated testing, you have an automated release process and you can deploy your application any time by clicking a button.
+
+In theory, with continuous delivery, you can decide to release daily, weekly, fortnightly, or whatever suits your business requirements. However, if you truly want to get the benefits of continuous delivery, you should deploy to production as early as possible to make sure that you release small batches that are easy to troubleshoot in case of a problem.
+
+Continuous deployment
+Continuous deployment (Links to an external site.) goes one step further than continuous delivery. With this practice, every change that passes all stages of your production pipeline is released to your customers. There's no human intervention, and only a failed test will prevent a new change to be deployed to production.
+
+Continuous deployment is an excellent way to accelerate the feedback loop with your customers and take the pressure off the team as there isn't a Release Day anymore. Developers can focus on building software, and they see their work go live minutes after they've finished working on it.
+
+A software engineering approach in which the value is delivered frequently through automated deployments. Everything related to deploying the artifact fits here. It's the process of "Moving" the artifact from the shelf to the spotlight. Some common CD-related phases might include:
+
+Creating infrastructure
+Provisioning servers
+Copying files
+Promoting to production
+Smoke Testing (aka Verify)
+Rollbacks
+8 Principles of Continuous Delivery
+
+Repeatable Reliable Process
+Automate Everything
+Version Control Everything
+Bring the Pain Forward
+Build-in Quality
+"Done" Means Released
+Everyone is Responsible
+Continuous Improvement
+Where Does CI/CD Fit In?
+
+Stage
+
+Before CI/CD
+
+After CI/CD
+
+Coding
+
+Human
+
+Human
+
+Code Review
+
+Human, Subjective, Inconsistent
+
+Human/CI - Static Analysis
+
+Compile/Lint
+
+Human
+
+CI
+
+Merge/Integrate
+
+Human
+
+CI
+
+Run Unit Tests
+
+Human, Hit or Miss, Easily Bought Off with Pressure
+
+CI
+
+Run Integration Tests
+
+Human, Hit or Miss, Easily Bought Off with Pressure
+
+CI
+
+Verify Dependency Security
+
+Human, Often Not Done
+
+CI
+
+Deploy to Test Env
+
+Human, Problematic, Missed Steps
+
+CD
+
+Team Test
+
+Human, Time Consuming
+
+CD - Automated Acceptance Tests
+
+Deploy to Client Test Env
+
+Human, Problematic, Missed Steps
+
+CD
+
+Client Test
+
+Human, Often Unnecessary If Pre-Development Activities are On Point
+
+Human - Maybe Not Needed If We Can Build Confidence
+
+Create Infrastructure
+
+Human, Problematic, Missed Steps, Stressful
+
+CD
+
+Deploy to Production
+
+Human, Problematic, Missed Steps, Stressful
+
+CD
+
+Smoke Test in Prod
+
+Human, Inconsistent
+
+Automated Smoke Tests (Subset of AAT's)
+
+Rollbacks
+
+Human, Problematic, Missed Steps, Stressful
+
+CD
+
+Promoting Production
+
+Human, Problematic, Missed Steps, Stressful
+
+CD
+
+Celebrate!
+
+Human
+
+Human
+
+ 
+
+Screen Shot 2021-03-18 at 11.45.53 AM.png  
+
+Key Terms
+
+Pipeline: A set of data processing elements connected in series, where the output of one element is the input of the next one.
+Continuous Integration: The practice of merging all developers' working copies to shared mainline several times a day.
+Continuous Delivery: An engineering practice in which teams produce and release value in short cycles.
+Continuous Deployment: A software engineering approach in which the value is delivered frequently through automated deployments.
+Infrastructure as Code: The management of infrastructure using code.
+Provisioning: The process of setting up IT infrastructure.
+Artifact: A product of some process applied to the code repository.
+DevOps: A set of practices that works to automate and integrate the processes between software development and IT teams.
+Testing: A practice that seeks to ensure the quality of the software.
+Best Practices for CI/CD:
+
+Fail Fast
+
+Set up your CI/CD pipeline to find and reveal failures as fast as possible. The faster you can bring your code failures to light, the faster you can fix them.
+
+Measure Quality
+
+Measure your code quality so that you can see the positive effects of your improvement work (or the negative effects of technical debt).
+
+Only Road to Production
+
+Once CI/CD is deploying to production on your behalf, it must be the only way to deploy. Any other person or process that meddles with production after CI/CD is running will inevitably cause CI/CD to become inconsistent and fail.
+
+Maximum Automation
+
+If it can be automated, automate it. This will only improve your process!
+
+Config in Code
+
+All configuration code must be in code and versioned alongside your production code. This includes the CI/CD configuration files!
+
+ 
+
+Deployment Strategy
+
+Description
+
+Big-Bang
+
+Replace A with B all at once.
+
+Blue Green
+
+Two versions of production: Blue or the previous version and Green or the new version. Traffic can still be routed to blue while testing green. Switching to the new version is done by simply shifting traffic from blue to green.
+
+Canary
+
+Aka Rolling Update, After deploying the new version, start routing traffic to the new version little by little until all traffic is hitting the new production. Both versions coexist for a period of time.
+
+A/B Testing
+
+Similar to Canary, but instead of routing traffic to the new version to accomplish a full deployment, you are testing your new version with a subset of users for feedback. You might end up routing all traffic to the new version, but that's always the goal
+
+ 
+
+Blue-Green Deployments
+
+The Router
+
+Router Option
+
+Description
+
+Load Balancer
+
+Instant switch for FE or BE, ideal router in most cases
+
+CDN
+
+Instant switch for front-end web apps.
+
+DNS
+
+A bit slow because of DNS propagation.
+
+Common Jobs
+
+Step
+
+Description
+
+ 
+
+Integrate Code in a Build
+
+Compile and create an artifact
+
+ 
+
+Run Tests
+
+Run unit and/or integration tests
+
+ 
+
+Ensure Infrastructure is Present
+
+Create green infrastructure
+
+ 
+
+Provision the Environment
+
+Configure green instance, migrate DB, etc
+
+ 
+
+Deploy Artifact
+
+Copy artifact files to the instance
+
+ 
+
+Run Smoke Tests
+
+Run a few tests that don't impact the prod server
+
+ 
+
+Perform Rollback if Failure
+
+Rollback here is more of a cleanup of green
+
+ 
+
+Switch Router
+
+Redirect traffic to new version
+
+ 
+
+Run Sanity Test
+
+Run a few tests that don't impact the prod server
+
+ 
+
+Perform Rollback If Failure
+
+Rollback here is switching the router back to blue and cleaning up green
+
+ 
+
+Destroy Old Release Environment?
+
+Clean up blue env (optional)
+
+ 
+
+Notify The Team (Successful)
+
+Celebrate!
+
+ 
+
+ 
+
+Build Stages
+
+Think of stages like categories or types of jobs. Stages are used to group jobs and control timing.
+
+Stage
+
+Description
+
+Build
+
+Everything that has to do with making code executable in production (e.g. Compile). The goal is to produce an artifact.
+
+Test
+
+All automated tests that verify at the code level.
+
+Analyze
+
+Any static analysis on the code or checking of dependencies.
+
+Deploy
+
+Anything to do with creating server instances or copying pre-built application files to an instance.
+
+Verify
+
+Any tests that can be run against a running instance of the application, often against a pre-production instance.
+
+Promote
+
+Replacing the current production environment with the new version which was just built and deployed.
+
+Revert
+
+Rolling back or undoing changes in case any verification fails after deployment.
+
+ 
+
+Feature
+
+Comments
+
+Scoped Environment Variables
+
+These are Environment variables that are built-in or defined at various scope levels including account, project, pipeline and job.
+
+Steps
+
+A step is an instruction that should be run during a job in order to accomplish a single goal.
+
+Jobs
+
+A job is made up of a group of steps that should run in a specific order.
+
+Job Images
+
+Jobs can take advantage of various pre-existing Docker images that provide an environment in which to run steps.
+
+Agents
+
+An agent is a machine, either physical or virtual, that responds to the CI/CD system to run jobs on-demand.
+
+Pipelines
+
+A pipeline is a set of instructions to run a group of jobs in parallel or sequentially and according to a pre-determined dependency tree.
+
+File Sharing
+
+File sharing in the CI/CD context is the ability to share files between jobs, even though the jobs might be run on completely different images or agents.
+
+Code-Based Configuration
+
+The code-based configuration enables engineers to build configuration files that define and control CI/CD pipelines. These files can be saved to disk, shared with others, and versioned in source control.
+
+Failure Branching
+
+Failure branching allows engineers to write instructions that should be run only in the event of a job failure.
+
+ 
+
+Installable/On-Prem
+
+Your team may prefer an on-prem CI/CD server running closer to the development team. There are a lot of great options with varying pricing models. One major benefit to an on-prem CI/CD server is a high degree of control. On the other hand, an on-prem CI/CD server requires time from someone in the team to maintain. The list below has a few options, but certainly not all!
+
+Tool
+
+Creator/Maintainer
+
+Differentiators
+
+Jenkins
+
+Various Contributors
+
+Vibrant open-source, 100% free
+
+Gitlab Community
+
+Gitlab
+
+Open-source, installable version of the popular cloud-based service, 100% free
+
+Team City
+
+JetBrains
+
+Very mature, JetBrains support
+
+Team Foundation Server (TFS)
+
+Microsoft
+
+Seemless integration with Microsoft products, Microsoft support
+
+Cloud-Based
+
+Some teams prefer to use cloud-based services since they require mush less time to maintain and configure. The list below is far from exhaustive. There are many many options out there. These are just a few of our favorites.
+
+Tool
+
+Creator/Maintainer
+
+Differentiators
+
+Bamboo
+
+Atlassian
+
+Integrates well with other Atlassian products like Stride and Jira.
+
+Circle CI
+
+Circle Internet Services
+
+Free for limited use, personal or business. Boasts of faster builds.
+
+Travis CI
+
+Travis CI
+
+Extremely simple CI/CD orchestration tool. Some specialty features for libraries and packages. Free for open-source projects.
+
+GitLab
+
+GitLab
+
+Complete set of development tools including git repositories and built-in, integrated CI/CD pipelines. 2000 free minutes of CI/CD jobs per month.
